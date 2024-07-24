@@ -1,0 +1,6 @@
+@MemoryDb.Client_HostAddress = http://localhost:5045
+
+GET {{MemoryDb.Client_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,13 +1,9 @@
 ﻿using MemoryDb.Console;
 
-Console.WriteLine("Starting MemoryDb...");
+Console.WriteLine("Starting MemoryDb");
 
 var memoryDb = new KeyValueStore();
 
-memoryDb.Set("Test Key", "Test Value", 5);
+var server = new Server(memoryDb);
 
-Console.WriteLine(memoryDb.Get("Test Key"));
-
-Thread.Sleep(6000);
-
-Console.WriteLine(memoryDb.Get("Test Key"));
+server.Start();
