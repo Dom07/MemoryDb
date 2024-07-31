@@ -1,7 +1,7 @@
 ﻿using MemoryDb.Console.Models;
 using static MemoryDb.Console.Models.Enums;
 
-namespace MemoryDb.Console
+namespace MemoryDb.Console.Core
 {
     public class KeyValueStore
     {
@@ -35,7 +35,7 @@ namespace MemoryDb.Console
                     return status;
                 }
 
-                var dateTime = (ttl == -1) ? DateTime.MaxValue : DateTime.UtcNow.Add(TimeSpan.FromSeconds(ttl));
+                var dateTime = ttl == -1 ? DateTime.MaxValue : DateTime.UtcNow.Add(TimeSpan.FromSeconds(ttl));
 
                 _data[key] = value;
                 _expirationTime[key] = dateTime;
@@ -51,7 +51,7 @@ namespace MemoryDb.Console
             return status;
         }
 
-        public StatusModel Get(string key) 
+        public StatusModel Get(string key)
         {
             var status = new StatusModel();
 
@@ -90,7 +90,7 @@ namespace MemoryDb.Console
         }
 
         public bool Exist(string key) => _data.ContainsKey(key) && _expirationTime.ContainsKey(key);
-        
+
         public StatusModel Delete(string key)
         {
             var status = new StatusModel();

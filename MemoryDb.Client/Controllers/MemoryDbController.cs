@@ -6,11 +6,12 @@ namespace MemoryDb.Client.Controllers
     [Route("[controller]")]
     public class MemoryDbController : ControllerBase
     {
-        [HttpGet(Name = "GetClient")]
-        public string Get()
+        [HttpGet(Name="GetValue")]
+        public async Task<string> Get()
         {
             var client = new Core.Client();
-            return client.Set("Hello World");
+            await client.Set("1", "First string going in.", "-1");
+            return "OK";
         }
     }
 }
